@@ -1,31 +1,30 @@
-import { useState } from 'react';
-import { Gain_Chain_AI_backend } from 'declarations/Gain_Chain_AI_backend';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Landing from './components/Landing';
+import Dashboard from './components/Dashboard';
+import FloatingButton from './components/Floatingai';
+import SignUpPage from './components/signup';
+import LoginPage from './components/LoginPage';
+import FolderPage from './components/dashboard/Folderpage';
+import GCHCoinInfo from './components/gchcoininfo';
+import './index.css';
 
-function App() {
-  const [greeting, setGreeting] = useState('');
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    Gain_Chain_AI_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
-
+const App = () => {
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <Router> {/* Wrap Routes with BrowserRouter */}
+      <div>
+        <FloatingButton />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/profile" element={<Dashboard />} />
+          <Route path="/gch-coin" element={<GCHCoinInfo />} /> {/* Static route for GCH Coin info */}
+          <Route path="/folder/:folderName" element={<FolderPage />} /> {/* Dynamic route for folder details */}
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
