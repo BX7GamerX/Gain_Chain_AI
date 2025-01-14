@@ -3,7 +3,12 @@
 import React, { useEffect, useRef } from "react"
 import { motion, useAnimation } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-
+// Import images
+import handImage from './images/hand.jpg'; // Import image from src
+import securityImage from './images/security.webp'; // Import image from src
+import communityImage from './images/community.webp'; // Import image from src
+import communityJPEGImage from './images/community.jpeg'; // Import image from src
+import icpImage from './images/icp.jpg'; // Import image from src
 export default function IntegratedSection() {
   const controls = useAnimation()
   const ref = useRef(null)
@@ -74,33 +79,33 @@ export default function IntegratedSection() {
         <div className="mt-12 grid gap-8 sm:mt-16 lg:grid-cols-2">
           {[
             {
-              title: "AI-Powered Web 3",
-              description: "Harness the power of AI to enhance Web 3 development and user engagement on Gain Chain.",
-              image: "src/images/hand.jpg",
-              alt: "AI Web 3",
+              title: "AI-Powered Blockchain",
+              description: "Harness the power of AI to enhance blockchain development and user engagement on Gain Chain.",
+              image: handImage,
+              alt: "AI Blockchain",
             },
             {
               title: "Decentralized Security",
               description: "Gain Chain ensures top-notch security through decentralized protocols and cryptography.",
-              image: "src/images/security.webp",
+              image: securityImage,
               alt: "Decentralized Security",
             },
             {
-              title: "Web 3 Analytics",
-              description: "Gain valuable insights through AI-powered analytics for Web 3 transactions and behavior patterns.",
-              image: "src/images/community.webp",
-              alt: "Web 3 Analytics",
+              title: "Blockchain Analytics",
+              description: "Gain valuable insights through AI-powered analytics for blockchain transactions and behavior patterns.",
+              image: communityImage,
+              alt: "Blockchain Analytics",
             },
             {
               title: "Community & Support",
-              description: "Join our vibrant community of developers and Web 3 enthusiasts. Gain Chain offers 24/7 support and collaborative learning to help you build, share, and innovate.",
-              image: "src/images/community.jpeg",
+              description: "Join our vibrant community of developers and blockchain enthusiasts. Gain Chain offers 24/7 support and collaborative learning to help you build, share, and innovate.",
+              image: communityJPEGImage,
               alt: "Community Support",
             },
             {
               title: "ICP Integration",
               description: "Integrate with Internet Computer Protocol (ICP) for scalable and efficient Web 3 solutions.",
-              image: "src/images/icp.jpg",
+              image: icpImage,
               alt: "ICP Integration",
             },
           ].map((feature, index) => (
