@@ -1,101 +1,171 @@
-import React from "react";
-import { useGoogleLogin } from "@react-oauth/google";
-import { Link } from "react-router-dom"; // Import Link for navigation
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthClient } from "@dfinity/auth-client";
+import { motion, AnimatePresence } from "framer-motion";
 
 const SignUpPage = () => {
-  // Handle Google Sign-In
-  const handleGoogleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      console.log("Google token:", tokenResponse);
-    },
-    onError: () => {
-      console.error("Google login failed");
-    },
-  });
+  const navigate = useNavigate();
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
-  // Handle Internet Identity Sign-In
-  const handleInternetIdentityLogin = () => {
-    console.log("Internet Identity login triggered.");
-    alert("Logged in with Internet Identity (mock data).");
+  const handleInternetIdentityLogin = async () => {
+    try {
+      const authClient = await AuthClient.create();
+      await authClient.login({
+        identityProvider: process.env.II_URL || "https://identity.ic0.app",
+        onSuccess: () => {
+          console.log("Internet Identity login successful");
+          localStorage.setItem('isAuthenticated', 'true');
+          setShowSuccessPopup(true);
+          // Navigate after showing popup
+          setTimeout(() => {
+            navigate("/profile", { replace: true });
+          }, 2000);
+        },
+        onError: (error) => {
+          console.error("Internet Identity login failed:", error);
+        },
+      });
+    } catch (error) {
+      console.error("Error initializing Internet Identity:", error);
+    }
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex min-h-screen bg-gradient-to-br from-gray-900 to-gray-800"
+    >
+      {/* Success Popup */}
+      <AnimatePresence>
+        {showSuccessPopup && (
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            className="fixed top-0 left-0 right-0 z-50 flex justify-center items-start pt-20"
+          >
+            <div className="bg-teal-500 text-white px-8 py-4 rounded-lg shadow-lg flex items-center space-x-3">
+              <svg 
+                className="w-6 h-6" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M5 13l4 4L19 7" 
+                />
+              </svg>
+              <span className="font-semibold">Welcome! We're happy to have you here!</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Left Half: Image Section */}
-      <div className="hidden md:flex w-1/2 items-center justify-center bg-gradient-to-br from-teal-600 to-teal-800">
-        <img
+      <motion.div 
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="hidden md:flex w-1/2 items-center justify-center bg-gradient-to-br from-teal-600 to-teal-800"
+      >
+        <motion.img
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 300 }}
           src="src/images/hand.jpg"
           alt="Sign Up Illustration"
-          className="w-4/5 h-3/4 rounded-lg shadow-lg"
+          className="w-4/5 h-3/4 rounded-lg shadow-lg object-cover"
         />
-      </div>
+      </motion.div>
 
       {/* Right Half: Signup Form */}
-      <div className="w-full md:w-1/2 flex items-center justify-center bg-white px-8 py-16">
+      <motion.div 
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="w-full md:w-1/2 flex items-center justify-center bg-transparent px-8 py-16"
+      >
         <div className="w-full max-w-md">
-          <h1 className="text-3xl font-bold text-gray-800 text-center mb-8">
-            Create Your Account
-          </h1>
-          <p className="text-gray-600 text-center mb-6">
-            Choose a method to sign up and join our platform.
-          </p>
+          <motion.h1 
+            initial={{ y: -20 }}
+            animate={{ y: 0 }}
+            className="text-4xl font-bold text-white text-center mb-8"
+          >
+            Get Started
+          </motion.h1>
+          <motion.p 
+            initial={{ y: -10 }}
+            animate={{ y: 0 }}
+            className="text-gray-300 text-center mb-6"
+          >
+            Join the future of digital identity
+          </motion.p>
 
           <div className="space-y-6">
-            {/* Google Sign-In Button */}
-            <button
-              onClick={handleGoogleLogin}
-              className="w-full flex items-center justify-center py-3 px-4 text-white bg-teal-600 rounded-md font-semibold shadow-md hover:bg-teal-700 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-300 active:scale-95"
-            >
-              <svg
-                className="w-5 h-5 mr-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 48 48"
-              >
-                <path
-                  fill="#EA4335"
-                  d="M24 9.5c3.15 0 5.83 1.1 7.97 2.93l5.97-5.97C34.65 3.45 29.76 1.5 24 1.5 14.7 1.5 6.85 6.4 3.02 13.35l7.3 5.68C12.4 12.05 17.85 9.5 24 9.5z"
-                />
-                <path
-                  fill="#34A853"
-                  d="M43.64 20.2H42V20H24v8h11.35c-1.5 4.35-5.65 7.5-11.35 7.5-6.15 0-11.4-4.13-13.27-9.68L3.02 27.8C6.85 36.4 14.7 42 24 42c8.6 0 15.84-5.93 18.43-14.07l.03-.01-7.32-5.7C33.32 23.67 28.91 26.2 24 26.2c-3.35 0-6.45-1.25-8.8-3.3l-.1-.1-7.3 5.7c2.68 4.27 7.58 7.2 13.2 7.2 6.3 0 11.52-3.5 14.24-8.55l7.55 6.23C42.97 36.23 34.77 42 24 42 12.43 42 3 32.93 3 22 3 11.07 12.43 2 24 2c5.75 0 10.96 1.7 15.24 4.58L43.6 9C40.4 6.2 34.88 4 24 4c-8.6 0-16.1 5.35-19.02 13.15l7.3 5.68C14.6 16.4 19.85 14 24 14c5.3 0 9.72 2.5 12.45 6.55L43.63 20H24z"
-                />
-              </svg>
-              Sign Up with Google
-            </button>
-
-            {/* Internet Identity Sign-In Button */}
-            <button
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={handleInternetIdentityLogin}
-              className="w-full flex items-center justify-center py-3 px-4 text-white bg-teal-600 rounded-md font-semibold shadow-md hover:bg-teal-700 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-300 active:scale-95"
+              className="w-full flex items-center justify-center py-4 px-6 text-white bg-gradient-to-r from-teal-500 to-teal-600 rounded-xl font-semibold shadow-lg hover:shadow-teal-500/25 transition-all duration-300 relative overflow-hidden group"
             >
-              <svg
-                className="w-5 h-5 mr-2"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-teal-600 to-teal-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              />
+              <motion.div 
+                className="relative flex items-center"
+                whileHover={{ y: -2 }}
               >
-                <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 22c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z" />
-                <path d="M12 6C9.24 6 7 8.24 7 11h2c0-1.66 1.34-3 3-3s3 1.34 3 3-1.34 3-3 3v2c2.76 0 5-2.24 5-5s-2.24-5-5-5z" />
-              </svg>
-              Sign Up with Internet Identity
-            </button>
+                <svg
+                  className="w-6 h-6 mr-3"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
+                    fill="currentColor"
+                  />
+                </svg>
+                Continue with Internet Identity
+              </motion.div>
+            </motion.button>
           </div>
 
-          {/* New Member Link */}
-          <div className="mt-6 text-center">
-            <p className="text-gray-600">
-              Already have an account?{" "}
-              <Link
-                to="/login"
-                className="text-teal-600 font-semibold hover:underline"
-              >
-                Login here
-              </Link>
-            </p>
-          </div>
+          {/* Futuristic Decorative Elements */}
+          <motion.div 
+            animate={{ 
+              rotate: 360,
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ 
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute bottom-10 right-10 w-32 h-32 border-2 border-teal-500/20 rounded-full"
+          />
+          <motion.div 
+            animate={{ 
+              rotate: -360,
+              scale: [1, 1.2, 1]
+            }}
+            transition={{ 
+              duration: 15,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute top-10 left-10 w-24 h-24 border-2 border-teal-500/10 rounded-full"
+          />
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

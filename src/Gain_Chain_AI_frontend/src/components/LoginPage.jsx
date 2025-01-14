@@ -1,9 +1,34 @@
 import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
+import { AuthClient } from "@dfinity/auth-client";
 
 const LoginPage = () => {
   const navigate = useNavigate(); // Hook for navigation
+
+  // Handle Internet Identity Login
+  const handleInternetIdentityLogin = async () => {
+    try {
+      const authClient = await AuthClient.create();
+      
+      const isAuthenticated = await authClient.isAuthenticated();
+      
+      if (!isAuthenticated) {
+        await authClient.login({
+          identityProvider: process.env.II_URL || "https://identity.ic0.app",
+          onSuccess: () => {
+            console.log("Internet Identity login successful.");
+            navigate("/profile");
+          },
+          onError: (error) => {
+            console.error("Internet Identity login failed", error);
+          },
+        });
+      }
+    } catch (error) {
+      console.error("Error initializing Internet Identity", error);
+    }
+  };
 
   // Handle Google Login
   const handleGoogleLogin = useGoogleLogin({
@@ -16,14 +41,6 @@ const LoginPage = () => {
       console.error("Google login failed");
     },
   });
-
-  // Handle Internet Identity Login
-  const handleInternetIdentityLogin = () => {
-    console.log("Internet Identity login triggered.");
-    alert("Logged in with Internet Identity (mock data).");
-    // Navigate to profile page after successful login
-    navigate("/profile");
-  };
 
   return (
     <div className="flex min-h-screen bg-gray-100">

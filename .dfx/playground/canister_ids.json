@@ -1,11 +1,9 @@
 {
   "Gain_Chain_AI_backend": {
-    "playground": "3c7jb-myaaa-aaaab-qacoa-cai"
+    "playground": "363tq-3yaaa-aaaab-qacma-cai"
   },
   "Gain_Chain_AI_frontend": {
-    "playground": "5oxzc-3qaaa-aaaab-qaczq-cai"
+    "playground": "3c7jb-myaaa-aaaab-qacoa-cai"
   },
-  "internet_identity": {
-    "playground": "54ro3-xaaaa-aaaab-qac2q-cai"
-  }
+  "internet_identity": {}
 }
