@@ -3,6 +3,11 @@
 import React, { useEffect, useRef } from "react"
 import { motion, useAnimation } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+// Import images
+import handImage from './images/hand.jpg'; // Import image from src
+import securityImage from './images/security.webp'; // Import image from src
+import communityImage from './images/community.webp'; // Import image from src
+import communityJPEGImage from './images/community.jpeg'; // Import image from src
 
 export default function IntegratedSection() {
   const controls = useAnimation()
@@ -77,25 +82,25 @@ export default function IntegratedSection() {
             {
               title: "AI-Powered Blockchain",
               description: "Harness the power of AI to enhance blockchain development and user engagement on Gain Chain.",
-              image: "src/images/hand.jpg",
+              image: handImage,
               alt: "AI Blockchain",
             },
             {
               title: "Decentralized Security",
               description: "Gain Chain ensures top-notch security through decentralized protocols and cryptography.",
-              image: "src/images/security.webp",
+              image: securityImage,
               alt: "Decentralized Security",
             },
             {
               title: "Blockchain Analytics",
               description: "Gain valuable insights through AI-powered analytics for blockchain transactions and behavior patterns.",
-              image: "src/images/community.webp",
+              image: communityImage,
               alt: "Blockchain Analytics",
             },
             {
               title: "Community & Support",
               description: "Join our vibrant community of developers and blockchain enthusiasts. Gain Chain offers 24/7 support and collaborative learning to help you build, share, and innovate.",
-              image: "src/images/community.jpeg",
+              image: communityJPEGImage,
               alt: "Community Support",
             },
           ].map((feature, index) => (
