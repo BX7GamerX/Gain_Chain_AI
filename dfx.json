@@ -10,12 +10,19 @@
         "Gain_Chain_AI_backend"
       ],
       "source": [
-        "src/Gain_Chain_AI_frontend/dist"
+        "src/Gain_Chain_AI_frontend/dist",
+        "src/Gain_Chain_AI_frontend/dist/assets"
       ],
       "type": "assets",
-      "workspace": "src/Gain_Chain_AI_frontend"
+      "workspace": "src/Gain_Chain_AI_frontend",
+      "frontend": {
+        "entrypoint": "src/Gain_Chain_AI_frontend/src/index.html"
+      },
+      "headers": {
+        "Content-Security-Policy": "default-src 'self' 'unsafe-eval' 'unsafe-inline' https: http: data:; script-src 'self' 'unsafe-eval' 'unsafe-inline' https: http: https://accounts.google.com/gsi/client; img-src 'self' data: https: http:; style-src 'self' 'unsafe-inline' https: http:; connect-src 'self' https: http:; font-src 'self' data: https: http:;"
+      }
     },
- "internet_identity" : {
+    "internet_identity": {
       "type": "pull",
       "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"
     }

@@ -23,7 +23,7 @@ const Header = () => {
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           sticky
             ? 'bg-gradient-to-r from-[#001F54]/80 to-[#002C72]/80 backdrop-blur-md shadow-lg'
-            : 'bg-gradient-to-r from-[#002C72] to-[#00A7E1] backdrop-blur-md shadow-lg'
+            : 'bg-transparent'
         }`}
       >
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -48,7 +48,7 @@ const Header = () => {
 
             <motion.button
               onClick={() => navigate('/signup')}
-              className="text-white bg-[#00A7E1] px-6 py-2.5 rounded-full shadow-md hover:bg-[#002C72] transition-all font-switzer font-extrabold text-lg tracking-wide relative"
+              className="text-white bg-[#00A7E1] px-6 py-2.5 rounded-full shadow-md hover:bg-[#002C72] transition-all font-sans font-extrabold text-lg tracking-wide relative"
               animate={{
                 scale: [1, 1.03, 1],
                 boxShadow: [
