@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { IoHome } from 'react-icons/io5'; // Importing the home icon from react-icons
+import { IoHome } from 'react-icons/io5';
 import logo from '../../images/GAIN CHAIN AI.png';
 import logo2 from '../../images/neuro.png';
-import coinImage from '../../images/gchcoinfinale.png';
-import Sparkles from './Sparkles.jsx'; // Import Sparkles component
 
 const Header = () => {
   const [sticky, setSticky] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,26 +17,13 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
-    if (id === 'bottom') {
-      window.scrollTo(0, document.body.scrollHeight);
-    } else {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
-    setMenuOpen(false);
-  };
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
-
   return (
     <div>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           sticky
-            ? 'bg-gradient-to-r from-blue-600 bg-opacity-90 backdrop-blur-md shadow-lg to-transparent'
-            : 'bg-gradient-to-r from-teal-400 to-blue-600 bg-opacity-90 backdrop-blur-md shadow-lg'
+            ? 'bg-gradient-to-r from-[#001F54]/80 to-[#002C72]/80 backdrop-blur-md shadow-lg'
+            : 'bg-gradient-to-r from-[#002C72] to-[#00A7E1] backdrop-blur-md shadow-lg'
         }`}
       >
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -54,9 +36,8 @@ const Header = () => {
           />
 
           <nav className="hidden lg:flex items-center space-x-6">
-            {/* Home Icon Button */}
             <motion.button
-              className="text-white p-2 hover:text-teal-400 transition-all"
+              className="text-white p-2 hover:text-[#00A7E1] transition-all"
               onClick={() => navigate('/')}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -65,53 +46,34 @@ const Header = () => {
               <IoHome className="w-5 h-5" />
             </motion.button>
 
-            {/* GCH Coin Button with Motion and Sparkles */}
             <motion.button
-              className="relative p-2 rounded-full bg-transparent shadow-md"
-              onClick={() => navigate('/gch-coin')}
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              onClick={() => navigate('/signup')}
+              className="text-white bg-[#00A7E1] px-6 py-2.5 rounded-full shadow-md hover:bg-[#002C72] transition-all font-switzer font-extrabold text-lg tracking-wide relative"
+              animate={{
+                scale: [1, 1.03, 1],
+                boxShadow: [
+                  "0 0 0 0 rgba(255, 255, 255, 0.2)",
+                  "0 0 20px 3px rgba(255, 255, 255, 0.3)",
+                  "0 0 0 0 rgba(255, 255, 255, 0.2)"
+                ],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 25px 5px rgba(255, 255, 255, 0.4)",
+                transition: { duration: 0.2 }
+              }}
+              style={{
+                textShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
+              }}
             >
-              <img
-                src={coinImage}
-                alt="GCH Coin"
-                className="w-14 h-14 rounded-full"
-              />
-              {/* Add the Sparkles component */}
-              <Sparkles />
+              <span className="relative z-10">Get Started</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00A7E1] to-[#002C72] rounded-full opacity-80 blur-sm" />
             </motion.button>
-
-            <div className="relative">
-              <button
-                onClick={toggleDropdown}
-                className="text-white bg-teal-500 px-4 py-2 rounded-full shadow-md hover:bg-blue-600 transition-all"
-              >
-                Get Started
-              </button>
-              {dropdownOpen && (
-                <div className="absolute mt-2 w-48 bg-white shadow-lg rounded-md border z-50">
-                  <button
-                    className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                    onClick={() => {
-                      navigate('/signup');
-                      setDropdownOpen(false);
-                    }}
-                  >
-                    New Member
-                  </button>
-                  <button
-                    className="w-full text-left px-4 py-2 hover:bg-gray-100"
-                    onClick={() => {
-                      navigate('/login');
-                      setDropdownOpen(false);
-                    }}
-                  >
-                    Log In
-                  </button>
-                </div>
-              )}
-            </div>
           </nav>
         </div>
       </header>

@@ -25,6 +25,8 @@
     "@nfid/identitykit": "^1.0.7",
     "@react-oauth/google": "^0.12.1",
     "@react-spring/web": "^9.7.5",
+    "@react-three/drei": "^9.120.8",
+    "@react-three/fiber": "^8.17.12",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^11.18.0",
     "mdb-react-ui-kit": "^9.0.0",
@@ -35,7 +37,8 @@
     "react-router-dom": "^7.1.1",
     "react-toastify": "^11.0.2",
     "recharts": "^2.15.0",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "three": "^0.172.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
