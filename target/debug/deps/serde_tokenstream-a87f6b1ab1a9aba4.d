@@ -1,0 +1,10 @@
+/home/wendoh/Development/proffesional projects/Gain_Chain_AI/target/debug/deps/libserde_tokenstream-a87f6b1ab1a9aba4.rmeta: /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/lib.rs /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/ibidem.rs /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/ordered_map.rs /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/serde_tokenstream.rs
+
+/home/wendoh/Development/proffesional projects/Gain_Chain_AI/target/debug/deps/libserde_tokenstream-a87f6b1ab1a9aba4.rlib: /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/lib.rs /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/ibidem.rs /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/ordered_map.rs /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/serde_tokenstream.rs
+
+/home/wendoh/Development/proffesional projects/Gain_Chain_AI/target/debug/deps/serde_tokenstream-a87f6b1ab1a9aba4.d: /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/lib.rs /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/ibidem.rs /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/ordered_map.rs /home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/serde_tokenstream.rs
+
+/home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/lib.rs:
+/home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/ibidem.rs:
+/home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/ordered_map.rs:
+/home/wendoh/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde_tokenstream-0.2.2/src/serde_tokenstream.rs:
