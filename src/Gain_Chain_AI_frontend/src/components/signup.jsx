@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthClient } from "@dfinity/auth-client";
 import { motion, AnimatePresence } from "framer-motion";
+import handImage from '../images/hand.jpg'; 
+
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -107,12 +109,12 @@ const SignUpPage = () => {
           transition={{ type: "spring", stiffness: 300 }}
           className="relative w-4/5 h-3/4"
         >
-          <motion.img
-            src="src/images/hand.jpg"
-            alt="Sign Up Illustration"
-            className="w-full h-full rounded-2xl shadow-2xl object-cover"
-            style={{ filter: 'brightness(0.8) contrast(1.2)' }}
-          />
+<motion.img
+  src={handImage}  // Use the imported image
+  alt="Sign Up Illustration"
+  className="w-full h-full rounded-2xl shadow-2xl object-cover"
+  style={{ filter: 'brightness(0.8) contrast(1.2)' }}
+/>
           <motion.div
             className="absolute inset-0 bg-gradient-to-t from-teal-500/20 to-transparent rounded-2xl"
             animate={{ opacity: [0.3, 0.5, 0.3] }}
