@@ -43,7 +43,7 @@ const Dashboard = () => {
   const renderContent = () => {
     switch (activeTab) {
       case "Overview":
-        return <Overview stats={mockData.stats} />;
+        return <Overview />;
       case "New Project":
         return <NewProject projects={mockData.newProjects} />;
       case "My Projects":
@@ -71,20 +71,19 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="flex h-screen bg-white text-black">
-      <Sidebar
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        tabs={tabs}
-        isOpen={isSidebarOpen}
+    <div className="flex flex-col h-screen">
+      <Header
         toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+        notificationCount={3}
       />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <Header
-          companyName="Gain Chain Inc."
-          toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      <div className="flex flex-1">
+        <Sidebar
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          tabs={tabs}
+          isOpen={isSidebarOpen}
         />
-        <main className="flex-1 overflow-y-auto bg-white">
+        <main className="flex-1 overflow-y-auto bg-white dark:bg-[#1c1f24]">
           <div className="container mx-auto px-6 py-8">
             <motion.div
               key={activeTab}

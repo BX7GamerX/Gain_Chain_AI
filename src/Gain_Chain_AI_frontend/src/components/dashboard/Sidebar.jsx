@@ -1,76 +1,56 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, LogOut, User, Settings } from "lucide-react"; // Add Settings icon
+import { User, Home, FolderPlus, Folder, MessageCircle } from "lucide-react";
 
 const Sidebar = ({ activeTab, setActiveTab, tabs, isOpen }) => {
-  const mockData = {
-    username: "John Doe",
-    role: "Software Engineer",
-  };
-
   return (
     <motion.aside
       initial={{ x: -300 }}
       animate={{ x: isOpen ? 0 : -300 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="bg-white text-gray-800 w-64 min-h-screen overflow-y-auto fixed lg:static lg:translate-x-0 shadow-lg z-20 flex flex-col"
+      className="bg-white dark:bg-[#1c1f24] text-black dark:text-gray-200 w-20 min-h-screen overflow-y-auto fixed lg:static lg:translate-x-0 shadow-lg z-20 flex flex-col items-center pt-12"
     >
-      {/* Profile Section */}
-      <div className="px-6 py-4 flex items-center space-x-4 border-b border-teal-300">
-        <div className="w-12 h-12 flex items-center justify-center bg-gray-300 rounded-full border-2 border-teal-500">
-          <User size={24} className="text-teal-500" /> {/* Profile icon */}
-        </div>
-        <div>
-          <h3 className="text-lg font-semibold text-teal-700">{mockData.username}</h3>
-          <p className="text-sm text-gray-600">{mockData.role}</p>
-        </div>
+      <div className="flex flex-col items-center mb-8">
+        <div className="w-12 h-12 bg-gray-300 rounded-full mb-4"></div>
+        <p className="text-xs text-gray-500">Dashboard</p>
       </div>
-
-      {/* Navigation Tabs */}
-      <nav className="mt-4 px-4 flex-1">
+      <nav className="flex-1">
         {tabs.map((tab) => (
           <motion.button
             key={tab.label}
-            whileHover={{ x: 5 }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => setActiveTab(tab.label)}
             aria-label={`Navigate to ${tab.label}`}
-            className={`flex items-center space-x-3 py-3 px-4 w-full rounded-lg transition-colors ${
+            className={`flex items-center justify-center py-3 w-full transition-colors ${
               activeTab === tab.label
                 ? "bg-teal-500 text-white"
-                : "hover:bg-gray-100"
+                : "hover:bg-[#293038]"
             }`}
           >
-            <tab.icon size={20} />
-            <span className="text-sm font-medium">{tab.label}</span>
-            {activeTab === tab.label && (
-              <ChevronRight className="ml-auto" size={16} />
-            )}
+            <motion.div
+              className={`flex items-center justify-center rounded-full ${
+                activeTab === tab.label ? "bg-teal-500" : "bg-transparent"
+              }`}
+              whileHover={{ scale: 1.2 }}
+              transition={{ duration: 0.3 }}
+            >
+              <tab.icon
+                size={24}
+                className={activeTab === tab.label ? "text-white" : "text-[#9dabb8]"}
+              />
+            </motion.div>
+            <motion.span
+              className="ml-2 text-sm font-medium hidden group-hover:inline"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              {tab.label}
+            </motion.span>
           </motion.button>
         ))}
       </nav>
-
-      {/* Settings and Logout Section */}
-      <div className="px-4 py-4 border-t border-teal-300">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Settings"
-          className="flex items-center space-x-3 py-3 px-4 w-full rounded-lg transition-colors hover:bg-gray-100"
-        >
-          <Settings size={20} />
-          <span className="text-sm font-medium">Settings</span>
-        </motion.button>
-
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Logout"
-          className="flex items-center space-x-3 py-3 px-4 w-full rounded-lg transition-colors hover:bg-gray-100 mt-4"
-        >
-          <LogOut size={20} />
-          <span className="text-sm font-medium">Logout</span>
-        </motion.button>
-      </div>
     </motion.aside>
   );
 };

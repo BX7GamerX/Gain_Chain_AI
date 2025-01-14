@@ -8,7 +8,7 @@ export default function IntegratedSection() {
   const controls = useAnimation()
   const ref = useRef(null)
   const { ref: inViewRef, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.3,
   })
 
@@ -22,7 +22,7 @@ export default function IntegratedSection() {
     if (inView) {
       controls.start("visible")
     } else {
-      controls.start("hidden")
+      controls.start("exit")
     }
   }, [controls, inView])
 
@@ -55,30 +55,29 @@ export default function IntegratedSection() {
             animate={{
               textShadow: [
                 "0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa",
-                "0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa",
-                "0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa",
+                "0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #0fa, 0 0 0px #0fa, 0 0 0px #0fa, 0 0 0px #0fa, 0 0 0px #0fa",
               ],
               scale: [1, 1.05, 1],
             }}
             transition={{
-              duration: 2,
+              duration: 3,
               repeat: Infinity,
               repeatType: "reverse",
             }}
           >
             Discover
           </motion.span>{" "}
-          Blockchain Development & AI for the Future
+          Web 3 Development & AI for the Future
         </motion.p>
 
         {/* Features Section */}
         <div className="mt-12 grid gap-8 sm:mt-16 lg:grid-cols-2">
           {[
             {
-              title: "AI-Powered Blockchain",
-              description: "Harness the power of AI to enhance blockchain development and user engagement on Gain Chain.",
+              title: "AI-Powered Web 3",
+              description: "Harness the power of AI to enhance Web 3 development and user engagement on Gain Chain.",
               image: "src/images/hand.jpg",
-              alt: "AI Blockchain",
+              alt: "AI Web 3",
             },
             {
               title: "Decentralized Security",
@@ -87,16 +86,22 @@ export default function IntegratedSection() {
               alt: "Decentralized Security",
             },
             {
-              title: "Blockchain Analytics",
-              description: "Gain valuable insights through AI-powered analytics for blockchain transactions and behavior patterns.",
+              title: "Web 3 Analytics",
+              description: "Gain valuable insights through AI-powered analytics for Web 3 transactions and behavior patterns.",
               image: "src/images/community.webp",
-              alt: "Blockchain Analytics",
+              alt: "Web 3 Analytics",
             },
             {
               title: "Community & Support",
-              description: "Join our vibrant community of developers and blockchain enthusiasts. Gain Chain offers 24/7 support and collaborative learning to help you build, share, and innovate.",
+              description: "Join our vibrant community of developers and Web 3 enthusiasts. Gain Chain offers 24/7 support and collaborative learning to help you build, share, and innovate.",
               image: "src/images/community.jpeg",
               alt: "Community Support",
+            },
+            {
+              title: "ICP Integration",
+              description: "Integrate with Internet Computer Protocol (ICP) for scalable and efficient Web 3 solutions.",
+              image: "src/images/icp.jpg",
+              alt: "ICP Integration",
             },
           ].map((feature, index) => (
             <motion.div 

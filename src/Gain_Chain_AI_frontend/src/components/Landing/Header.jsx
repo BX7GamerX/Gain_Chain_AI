@@ -22,7 +22,7 @@ const Header = () => {
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           sticky
-            ? 'bg-gradient-to-r from-[#001F54]/80 to-[#002C72]/80 backdrop-blur-md shadow-lg'
+            ? 'bg-gradient-to-r from-[#001A3D]/80 to-[#003366]/80 backdrop-blur-md shadow-lg'
             : 'bg-transparent'
         }`}
       >
@@ -37,7 +37,7 @@ const Header = () => {
 
           <nav className="hidden lg:flex items-center space-x-6">
             <motion.button
-              className="text-white p-2 hover:text-[#00A7E1] transition-all"
+              className="text-white p-2 hover:text-[#00BFFF] transition-all"
               onClick={() => navigate('/')}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -48,13 +48,13 @@ const Header = () => {
 
             <motion.button
               onClick={() => navigate('/signup')}
-              className="text-white bg-[#00A7E1] px-6 py-2.5 rounded-full shadow-md hover:bg-[#002C72] transition-all font-sans font-extrabold text-lg tracking-wide relative"
+              className="text-white bg-[#00BFFF] px-6 py-2.5 rounded-full shadow-md hover:bg-[#003366] transition-all font-sans font-extrabold text-lg tracking-wide relative"
               animate={{
                 scale: [1, 1.03, 1],
                 boxShadow: [
-                  "0 0 0 0 rgba(255, 255, 255, 0.2)",
-                  "0 0 20px 3px rgba(255, 255, 255, 0.3)",
-                  "0 0 0 0 rgba(255, 255, 255, 0.2)"
+                  "0 0 0 0 rgba(0, 191, 255, 0.2)",
+                  "0 0 20px 3px rgba(0, 191, 255, 0.3)",
+                  "0 0 0 0 rgba(0, 191, 255, 0.2)"
                 ],
               }}
               transition={{
@@ -64,15 +64,15 @@ const Header = () => {
               }}
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 0 25px 5px rgba(255, 255, 255, 0.4)",
+                boxShadow: "0 0 25px 5px rgba(0, 191, 255, 0.4)",
                 transition: { duration: 0.2 }
               }}
               style={{
-                textShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
+                textShadow: "0 0 10px rgba(0, 191, 255, 0.5)",
               }}
             >
               <span className="relative z-10">Get Started</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#00A7E1] to-[#002C72] rounded-full opacity-80 blur-sm" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00BFFF] to-[#003366] rounded-full opacity-80 blur-sm" />
             </motion.button>
           </nav>
         </div>

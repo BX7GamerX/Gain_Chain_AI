@@ -108,7 +108,7 @@ export default function TestimonialCarousel() {
         <div className="flex items-center gap-6 mb-8 relative">
           <img 
             alt="Gain Chain Logo" 
-            src="src/images/neuro.png" 
+            src="../../images/neuro.png" 
             className="h-27 animate-heartbeat"
           />
           

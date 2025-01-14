@@ -7,12 +7,13 @@ import {
   FingerPrintIcon,
   LockClosedIcon,
 } from '@heroicons/react/24/outline';
+import coinImage from '../../images/coin.webp'; // Import the coin image in .webp format
 
 const features = [
   {
-    name: 'Blockchain-based Security',
+    name: 'Web 3-based Security',
     description:
-      'Gain Chain uses blockchain technology to ensure secure transactions and data integrity across all interactions.',
+      'Gain Chain uses Web 3 technology to ensure secure transactions and data integrity across all interactions.',
     icon: LockClosedIcon,
   },
   {
@@ -46,15 +47,6 @@ export default function FeatureSection() {
     return () => clearInterval(interval);
   }, []);
 
-  const cardAnimation = useSpring({
-    transform: activeFeature !== null ? 'scale(1.05)' : 'scale(1)',
-    boxShadow:
-      activeFeature !== null
-        ? '0px 8px 20px rgba(0, 0, 0, 0.2)'
-        : '0px 4px 10px rgba(0, 0, 0, 0.1)',
-    config: { tension: 300, friction: 20 },
-  });
-
   const controls = useAnimation();
 
   useEffect(() => {
@@ -72,84 +64,78 @@ export default function FeatureSection() {
 
   return (
     <div className="relative isolate overflow-hidden bg-[#001F54] py-24 sm:py-32">
-      {/* Fancy Title */}
+      {/* Feature Image with Gradient and Hover Effect */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#00A7E1] via-[#40E0D0] to-[#00A7E1]">
-          <motion.span
-            className="inline-block"
-            animate={{
-              textShadow: [
-                "0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa",
-                "0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa",
-                "0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa",
-              ],
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          >
-            Discover
-          </motion.span>{" "}
-          Our Amazing Features
-        </h2>
+        <motion.div
+          className="relative mx-auto w-1/2 h-auto rounded-full overflow-hidden"
+          style={{
+            background: 'radial-gradient(circle, rgba(0,31,84,0) 50%, #001F54 100%)',
+          }}
+          whileHover={{ rotateY: 180 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+        >
+          <img
+            src={coinImage} // Use the coin image in .webp format
+            alt="Coin"
+            className="object-cover w-full h-full"
+          />
+          <div className="absolute inset-0 pointer-events-none">
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0"
+              animate={{ opacity: [0, 0.5, 0] }}
+              transition={{ duration: 1, repeat: Infinity, repeatType: 'mirror' }}
+            />
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Title with Subtle Motion */}
+      <div className="text-center mb-16">
+        <motion.h2
+          className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#00A7E1] via-[#40E0D0] to-[#00A7E1]"
+          animate={{ opacity: [0.8, 1, 0.8], y: [0, -5, 0] }}
+          transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
+        >
+          Discover Our Amazing Features
+        </motion.h2>
         <p className="mt-4 text-lg text-white">
-          Explore how Gain Chain revolutionizes blockchain technology with
+          Explore how Gain Chain revolutionizes Web 3 technology with
           transparency, rewards, and security.
         </p>
       </div>
 
-      {/* Feature Cards and Image */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-wrap lg:flex-nowrap items-center">
-          {/* Feature Cards */}
-          <div className="w-full lg:w-1/2 space-y-8">
-            {features.map((feature, index) => (
+      {/* Feature Cards */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
+        {features.map((feature, index) => (
+          <motion.div
+            key={index}
+            animate={controls}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            className="relative p-8 bg-[#002C72] text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-500 ease-in-out"
+            onMouseEnter={() => setActiveFeature(index)}
+            onMouseLeave={() => setActiveFeature(null)}
+            style={{
+              borderRadius: '20px',
+              boxShadow: '0 0 20px rgba(0, 167, 225, 0.5)',
+            }}
+          >
+            <div className="flex items-center space-x-4">
               <motion.div
-                key={index}
-                animate={controls}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                className="relative p-6 bg-[#002C72] text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
-                onMouseEnter={() => setActiveFeature(index)}
-                onMouseLeave={() => setActiveFeature(null)}
+                className="h-16 w-16 flex items-center justify-center bg-[#00A7E1] text-white rounded-full"
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.5 }}
               >
-                <div className="flex items-center space-x-4">
-                  <div className="h-12 w-12 flex items-center justify-center bg-[#00A7E1] text-white rounded-full">
-                    <feature.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-lg font-bold">{feature.name}</h3>
-                </div>
-                {activeFeature === index && (
-                  <p className="mt-4 text-white">{feature.description}</p>
-                )}
+                <feature.icon className="h-8 w-8" />
               </motion.div>
-            ))}
-          </div>
-
-          {/* Feature Image with Overlay */}
-          <div className="hidden lg:block lg:w-1/2">
-            <div className="relative">
-              <img
-                src="src/images/aiimage.jpg" // Replace with your image path
-                alt="Features"
-                className="rounded-lg shadow-lg object-cover w-full h-auto"
-              />
-              <animated.div
-                style={{ opacity: 1 }}
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-3/4 bg-white bg-opacity-80 p-4 rounded-lg shadow-lg"
-              >
-                <p className="text-[#001F54] text-lg font-medium text-center">
-                  {features[currentIndex].name}:{' '}
-                  {features[currentIndex].description}
-                </p>
-              </animated.div>
+              <h3 className="text-xl font-bold">{feature.name}</h3>
             </div>
-          </div>
-        </div>
+            {activeFeature === index && (
+              <p className="mt-4 text-white">{feature.description}</p>
+            )}
+          </motion.div>
+        ))}
       </div>
     </div>
   );

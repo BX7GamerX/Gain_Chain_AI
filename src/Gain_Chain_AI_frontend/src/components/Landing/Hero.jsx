@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import heroImage from '../../images/home.jpg';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState("");
@@ -26,6 +27,11 @@ const Hero = () => {
   return (
     <motion.div
       className="relative isolate overflow-hidden bg-[#001A3D] py-32 sm:py-48 flex items-center justify-center"
+      style={{
+        backgroundImage: `url(${heroImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
@@ -40,13 +46,7 @@ const Hero = () => {
           repeatType: "reverse",
           ease: "easeInOut",
         }}
-      >
-        <img
-          src="src/images/home.jpg"
-          alt="Hero Background"
-          className="h-full w-full object-cover opacity-70"
-        />
-      </motion.div>
+      />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-[#001F54]" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">

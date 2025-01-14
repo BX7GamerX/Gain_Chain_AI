@@ -9,9 +9,9 @@ const developerConnections = [
 ];
 
 const ChatSection = ({ selectedConnection, messages, onSend }) => (
-  <div className="bg-white p-6 rounded-md shadow-md max-w-md mx-auto">
-    <h3 className="text-xl font-bold text-teal-500 mb-4">{selectedConnection.name}'s Chat</h3>
-    <div className="h-80 overflow-y-scroll border-b border-gray-200 mb-4">
+  <div className="bg-[#1c1f24] p-6 rounded-lg shadow-lg max-w-lg mx-auto text-white">
+    <h3 className="text-2xl font-bold mb-4">{selectedConnection.name}'s Chat</h3>
+    <div className="h-80 overflow-y-scroll border-b border-gray-600 mb-4">
       <ul>
         {messages.map((msg, index) => (
           <li key={index} className="mb-3">
@@ -20,11 +20,11 @@ const ChatSection = ({ selectedConnection, messages, onSend }) => (
         ))}
       </ul>
     </div>
-    <div>
+    <div className="flex items-center">
       <input
         type="text"
         placeholder="Type a message..."
-        className="w-full p-2 rounded-md bg-gray-100 text-teal-700 border border-gray-300"
+        className="flex-1 p-2 rounded-md bg-[#2a2e35] text-white border border-gray-500"
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             onSend(e.target.value);
@@ -33,7 +33,7 @@ const ChatSection = ({ selectedConnection, messages, onSend }) => (
         }}
       />
       <button
-        className="bg-teal-500 text-white py-2 px-4 mt-2 rounded-md hover:bg-teal-600 transition"
+        className="bg-teal-500 text-white py-2 px-4 ml-2 rounded-md hover:bg-teal-600 transition"
         onClick={() => {
           const input = document.querySelector('#chat-input');
           if (input && input.value) {
@@ -49,16 +49,16 @@ const ChatSection = ({ selectedConnection, messages, onSend }) => (
 );
 
 const ConnectionsList = ({ connections, onSelect }) => (
-  <div className="bg-white p-6 rounded-md shadow-md max-w-xs mx-auto">
-    <h2 className="text-2xl font-bold text-teal-500 mb-4">Developer Connections</h2>
+  <div className="bg-[#1c1f24] p-6 rounded-lg shadow-lg max-w-xs mx-auto text-white">
+    <h2 className="text-2xl font-bold mb-4">Developer Connections</h2>
     <ul>
       {connections.map((connection) => (
         <li
           key={connection.id}
-          className="p-2 mb-2 cursor-pointer hover:bg-teal-100 rounded-md"
+          className="p-2 mb-2 cursor-pointer hover:bg-teal-600 rounded-md"
           onClick={() => onSelect(connection)}
         >
-          <span className="font-semibold text-teal-700">{connection.name}</span> - {connection.status}
+          <span className="font-semibold">{connection.name}</span> - {connection.status}
         </li>
       ))}
     </ul>
@@ -79,7 +79,7 @@ const ChatApp = () => {
   };
 
   return (
-    <div className="flex justify-center space-x-4 p-6 bg-gray-100 min-h-screen">
+    <div className="flex justify-center space-x-4 p-6 bg-[#111418] min-h-screen">
       <ConnectionsList
         connections={developerConnections}
         onSelect={setSelectedConnection}
