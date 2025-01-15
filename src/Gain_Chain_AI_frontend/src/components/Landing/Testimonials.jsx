@@ -4,6 +4,10 @@ import { toast, ToastContainer } from "react-toastify"; // Import Toastify
 import "react-toastify/dist/ReactToastify.css"; // Import default styles for Toastify
 import { motion, AnimatePresence } from "framer-motion"; // Add AnimatePresence for animations
 
+// Import images at the top
+import botImage from '../../images/bot.png'; // Adjust the path as necessary
+import gainChainLogo from '../../images/neuro.png'; // Adjust the path as necessary
+
 export default function TestimonialCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [newTestimonial, setNewTestimonial] = useState({ quote: "", name: "", role: "" });
@@ -67,7 +71,7 @@ export default function TestimonialCarousel() {
     <section className="relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:px-12" style={{ backgroundColor: "#001F54" }}>
       {/* Bot image with swing animation */}
       <img
-        src="src/images/bot.png"
+        src={botImage}
         alt="Peeping Bot"
         className="absolute top-9 right-8 w-250 h-150 animate-swing glow-effect"
       />
@@ -77,7 +81,7 @@ export default function TestimonialCarousel() {
         <div className="flex items-center gap-6 mb-8 relative">
           <img 
             alt="Gain Chain Logo" 
-            src="../../images/neuro.png" 
+            src={gainChainLogo} 
             className="h-27 animate-heartbeat"
           />
           
