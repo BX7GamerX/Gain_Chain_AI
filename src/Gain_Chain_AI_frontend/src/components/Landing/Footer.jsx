@@ -2,12 +2,14 @@ import React from 'react';
 import {
   MDBFooter,
   MDBContainer,
-  MDBIcon,
   MDBBtn,
 } from 'mdb-react-ui-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faTwitter, faGoogle, faInstagram, faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome styles
+
+// Import the logo image
+import logoImage from './images/neuro.png'; // Adjust path to the actual location
 
 export default function Footer() {
   return (
@@ -15,7 +17,8 @@ export default function Footer() {
       <MDBContainer className="d-flex justify-content-between align-items-center">
         {/* Logo Section */}
         <div className="d-flex align-items-center">
-          <img src="src/images/neuro.png" alt="Gain Chain Logo" style={{ height: '50px', marginRight: '15px' }} />
+          {/* Use imported logo image */}
+          <img src={logoImage} alt="Gain Chain Logo" style={{ height: '50px', marginRight: '15px' }} />
           <h5 className="mb-1" style={{ color: '#A9DFF1' }}>Gain Chain AI</h5>
           <div className="text-centre">
             <p style={{ color: '#A9DFF1', fontSize: '1rem' }}>Where AI and Blockchain Forge the Future</p>
