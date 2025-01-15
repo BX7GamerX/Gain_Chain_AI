@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import { Twitter, Instagram, LinkedinIcon as LinkedIn, GitlabIcon as GitHub } from 'lucide-react';
 import logo from '../../images/neuro.png'; // Adjust the path as necessary
 
+// Import the logo image
+import logoImage from './images/neuro.png'; // Adjust path to the actual location
+
 export default function Footer() {
   return (
     <footer className="bg-[#003366] text-white py-8">
