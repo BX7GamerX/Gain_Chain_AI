@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaGlobe } from 'react-icons/fa';
+import simon from '../../images/simon.jpeg';
+import joanne from '../../images/joanne.jpeg';
+import veronica from '../../images/verah.jpeg';
 
 const teamMembers = [
   {
     name: 'Simon Wandera',
     role: 'Blockchain Developer & AI Engineer',
-    image: 'src/images/simon.jpg',
+    image: simon,
     description: 'Full-stack blockchain developer specializing in AI integration and smart contract development.',
     portfolio: 'https://simonwandera.com',
     linkedin: 'https://linkedin.com/in/simonwandera',
@@ -15,16 +18,16 @@ const teamMembers = [
   {
     name: 'Joanne Wendoh',
     role: 'Frontend Developer & UI/UX Designer',
-    image: 'src/images/joanne.jpg',
+    image: joanne,
     description: 'Creative frontend developer with expertise in building intuitive and responsive user interfaces.',
-    portfolio: 'https://joannewendoh.com',
-    linkedin: 'https://linkedin.com/in/joannewendoh',
-    github: 'https://github.com/joannewendoh'
+    portfolio: 'https://mswendoh.world',
+    linkedin: 'https://www.linkedin.com/in/wendoh-joanne/',
+    github: 'https://github.com/J-Wendoh'
   },
   {
     name: 'Veronicah Anzimbu',
     role: 'Backend Developer & System Architect',
-    image: 'src/images/verah.jpg',
+    image: veronica,
     description: 'Experienced backend developer focused on scalable architecture and system optimization.',
     portfolio: 'https://veranzi.com',
     linkedin: 'https://linkedin.com/in/veronicahanzimbu',
