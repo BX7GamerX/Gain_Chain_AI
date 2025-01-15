@@ -7,6 +7,7 @@ import {
   MessageCircle,
   LogOut,
   Settings as SettingsIcon,
+  BookOpen,
 } from "lucide-react";
 import Sidebar from "../components/dashboard/Sidebar.jsx";
 import Header from "../components/dashboard/Header.jsx";
@@ -15,60 +16,64 @@ import NewProject from "../components/dashboard/newproject.jsx";
 import MyProjects from "../components/dashboard/MyProjects.jsx";
 import ChatSection from "../components/dashboard/ChatSection.jsx";
 import Settings from "./dashboard/Settings.jsx";
+import CourseSection from "./dashboard/CourseSection.jsx";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("Overview");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-  const mockData = {
-    stats: {
-      activeJobs: 12,
-      applicants: 150,
-      hires: 20,
-    },
-    newProjects: [
-      { name: "Blockchain Explorer", status: "Ongoing" },
-      { name: "Smart Contract Manager", status: "Completed" },
-    ],
-    myProjects: [
-      { name: "Portfolio Redesign", status: "Completed" },
-      { name: "Recruitment App", status: "In Progress" },
-    ],
-    chatMessages: [
-      { sender: "Team Lead", message: "Don't forget the roadmap meeting!" },
-      { sender: "Developer", message: "I'll update the feature by EOD." },
+  const user = {
+    name: "John Doe",
+    profilePicture: "path/to/profile/picture.jpg",
+  };
+
+  const projects = {
+    active: [
+      { id: 1, name: "Project 1", description: "Description of Project 1" },
+      { id: 2, name: "Project 2", description: "Description of Project 2" },
     ],
   };
+
+  const courses = {
+    completed: 5,
+    ongoing: [
+      { id: 1, title: "Course 1", progress: 75 },
+      { id: 2, title: "Course 2", progress: 50 },
+    ],
+  };
+
+  const gchCoins = {
+    total: 100,
+    fragments: 20,
+  };
+
+  const tabs = [
+    { label: "Overview", icon: Home },
+    { label: "New Project", icon: FolderPlus },
+    { label: "My Projects", icon: Folder },
+    { label: "Chat Section", icon: MessageCircle },
+    { label: "Settings", icon: SettingsIcon },
+    { label: "Courses", icon: BookOpen },
+  ];
 
   const renderContent = () => {
     switch (activeTab) {
       case "Overview":
-        return <Overview />;
+        return <Overview user={user} projects={projects} courses={courses} gchCoins={gchCoins} />;
       case "New Project":
-        return <NewProject projects={mockData.newProjects} />;
+        return <NewProject />;
       case "My Projects":
-        return <MyProjects projects={mockData.myProjects} />;
+        return <MyProjects projects={projects.active} />;
       case "Chat Section":
-        return <ChatSection messages={mockData.chatMessages} />;
+        return <ChatSection />;
       case "Settings":
         return <Settings />;
-      case "Logout":
-        // Simulate logout
-        window.location.href = "/login";
-        break;
+      case "Courses":
+        return <CourseSection />;
       default:
-        return <Overview stats={mockData.stats} />;
+        return <Overview user={user} projects={projects} courses={courses} gchCoins={gchCoins} />;
     }
   };
-
-  const tabs = [
-    { icon: Home, label: "Overview" },
-    { icon: FolderPlus, label: "New Project" },
-    { icon: Folder, label: "My Projects" },
-    { icon: MessageCircle, label: "Chat Section" },
-    { icon: LogOut, label: "Logout" },
-    { icon: SettingsIcon, label: "Settings" },
-  ];
 
   return (
     <div className="flex flex-col h-screen">

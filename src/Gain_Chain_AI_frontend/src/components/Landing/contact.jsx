@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
+import { motion } from 'framer-motion';
+import Typing from 'react-typing-effect';
+
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -34,9 +37,20 @@ export default function Contact() {
       )
       .then(
         () => {
-          setStatus('Message sent successfully!');
+          setStatus('Message sent successfully! 😊 We are happy to hear from you.');
           setIsLoading(false);
           setFormData({ name: '', email: '', message: '' });
+
+          // Send auto-reply
+          emailjs.send(
+            'your_service_id', // Use the same service ID
+            'auto_reply_template_id', // Create a new template for auto-reply
+            {
+              to_name: formData.name,
+              to_email: formData.email,
+            },
+            'your_user_id'
+          );
         },
         (error) => {
           setStatus('Failed to send message. Please try again later.');
@@ -47,26 +61,45 @@ export default function Contact() {
   };
 
   return (
-    <section className="bg-white py-16 sm:py-24 lg:py-32">
+    <section className="bg-gradient-to-b from-white to-blue-100 py-16 sm:py-24 lg:py-32">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
-        <h2 className="text-4xl font-bold tracking-tight text-blue-700 text-center">
-          Get in Touch
-        </h2>
-        <p className="mt-4 text-lg text-blue-600 text-center">
-          Have questions, feedback, or opportunities to discuss? We'd love to hear from you.
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="text-center"
+        >
+          <h2 className="text-4xl font-bold tracking-tight text-blue-700">
+            <Typing
+              text={['Get in Touch']}
+              speed={100}
+              eraseSpeed={50}
+              eraseDelay={2000}
+              typingDelay={500}
+            />
+          </h2>
+          <p className="mt-4 text-lg text-blue-600">
+            Have questions, feedback, or opportunities to discuss? We'd love to hear from you.
+          </p>
+        </motion.div>
         {status && (
-          <div
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
             className={`mt-6 text-center text-lg font-semibold ${
               status.includes('success') ? 'text-blue-500' : 'text-red-500'
             }`}
           >
             {status}
-          </div>
+          </motion.div>
         )}
-        <form
+        <motion.form
           onSubmit={handleSubmit}
-          className="mt-12 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+          className="mt-12 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 transform transition-transform duration-300 hover:scale-105"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
         >
           <div className="col-span-2 sm:col-span-1">
             <label
@@ -138,7 +171,7 @@ export default function Contact() {
               {isLoading ? 'Sending...' : 'Send Message'}
             </button>
           </div>
-        </form>
+        </motion.form>
       </div>
     </section>
   );

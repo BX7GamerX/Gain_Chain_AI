@@ -4,11 +4,12 @@ import React, { useEffect, useRef } from "react"
 import { motion, useAnimation } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 // Import images
-import handImage from './images/hand.jpg'; // Import image from src
-import securityImage from './images/security.webp'; // Import image from src
-import communityImage from './images/community.webp'; // Import image from src
-import communityJPEGImage from './images/community.jpeg'; // Import image from src
-import icpImage from './images/icp.jpg'; // Import image from src
+import handImage from '../../images/hand.jpg'; // Adjust the path as necessary
+import securityImage from '../../images/security.webp'; // Import image from src
+import communityImage from '../../images/community.webp'; // Import image from src
+import communityJPEGImage from '../../images/community.jpeg'; // Import image from src
+import icpImage from '../../images/icp.jpeg'; // Import image from src
+
 export default function IntegratedSection() {
   const controls = useAnimation()
   const ref = useRef(null)

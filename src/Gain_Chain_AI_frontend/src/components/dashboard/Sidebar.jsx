@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { User, Home, FolderPlus, Folder, MessageCircle } from "lucide-react";
 
-const Sidebar = ({ activeTab, setActiveTab, tabs, isOpen }) => {
+const Sidebar = ({ activeTab, setActiveTab, tabs = [], isOpen }) => {
   return (
     <motion.aside
       initial={{ x: -300 }}
