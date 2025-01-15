@@ -29,10 +29,10 @@ export default function Footer() {
             className="flex space-x-6"
           >
             {[
-              { icon: Twitter, href: 'https://twitter.com' },
-              { icon: Instagram, href: 'https://instagram.com' },
-              { icon: LinkedIn, href: 'https://linkedin.com' },
-              { icon: GitHub, href: 'https://github.com' },
+              { icon: Twitter, href: 'https://x.com/gchainAI' },
+              { icon: Instagram, href: 'https://instagram.com/Gain_ChainAI2' },
+              { icon: LinkedIn, href: 'https://www.linkedin.com/in/gchain-ai-9b850a33a/' },
+              { icon: GitHub, href: 'https://github.com/BX7GamerX/Gain_Chain_AI' },
             ].map((social, index) => (
               <motion.a 
                 key={index} 
