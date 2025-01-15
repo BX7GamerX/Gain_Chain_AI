@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useSpring, animated } from '@react-spring/web';
-import { motion, useAnimation } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   ArrowPathIcon,
   CloudArrowUpIcon,
   FingerPrintIcon,
   LockClosedIcon,
 } from '@heroicons/react/24/outline';
-import coinImage from '../../images/coin.webp'; // Import the coin image in .webp format
 
 const features = [
   {
@@ -38,59 +36,46 @@ const features = [
 
 export default function FeatureSection() {
   const [activeFeature, setActiveFeature] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % features.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const controls = useAnimation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      controls.start({
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: 'easeOut' },
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [controls]);
 
   return (
     <div className="relative isolate overflow-hidden bg-[#001F54] py-24 sm:py-32">
-      {/* Feature Image with Gradient and Hover Effect */}
-      <div className="text-center mb-16">
-        <motion.div
-          className="relative mx-auto w-1/2 h-auto rounded-full overflow-hidden"
-          style={{
-            background: 'radial-gradient(circle, rgba(0,31,84,0) 50%, #001F54 100%)',
+      {/* Glassmorphism Container for Video */}
+      <motion.h2 
+          className="text-4xl font-extrabold text-white text-center font-sans mb-12"
+          style={{textShadow: "0 0 15px rgba(255, 255, 255, 0.9)"}}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ 
+            opacity: 1,
+            y: 0,
+            scale: [1, 1.02, 1],
           }}
-          whileHover={{ rotateY: 180 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
         >
-          <img
-            src={coinImage} // Use the coin image in .webp format
-            alt="Coin"
-            className="object-cover w-full h-full"
-          />
-          <div className="absolute inset-0 pointer-events-none">
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0"
-              animate={{ opacity: [0, 0.5, 0] }}
-              transition={{ duration: 1, repeat: Infinity, repeatType: 'mirror' }}
-            />
-          </div>
-        </motion.div>
+          Learn more about Gain Chain AI
+        </motion.h2>
+      <div className="bg-white bg-opacity-20 backdrop-blur-lg border border-white rounded-lg shadow-lg p-4">
+        {/* YouTube Video Embed */}
+        <div className="w-full relative">
+          <div className="absolute -inset-1 bg-gradient-to-r from-white/30 via-white/50 to-white/30 rounded-lg blur-sm animate-pulse"></div>
+          <iframe
+            width="100%"
+            height="450"
+            src="https://www.youtube.com/embed/WuZ57_c0vTw"
+            title="Gain Chain AI Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="relative rounded-lg shadow-lg bg-white/10 backdrop-blur-sm"
+          ></iframe>
+        </div>
       </div>
 
       {/* Title with Subtle Motion */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-16 mt-[100px]">
         <motion.h2
           className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#00A7E1] via-[#40E0D0] to-[#00A7E1]"
           animate={{ opacity: [0.8, 1, 0.8], y: [0, -5, 0] }}
@@ -99,9 +84,17 @@ export default function FeatureSection() {
           Discover Our Amazing Features
         </motion.h2>
         <p className="mt-4 text-lg text-white">
-          Explore how Gain Chain revolutionizes Web 3 technology with
-          transparency, rewards, and security.
+          Explore how Gain Chain revolutionizes Web 3 technology with transparency, rewards, and security.
         </p>
+        
+        {/* New Line with Animation */}
+        <motion.p
+          className="mt-4 text-lg text-white"
+          animate={{ opacity: [0.8, 1, 0.8], y: [0, -5, 0] }}
+          transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
+        >
+          Learn more about Gain Chain AI
+        </motion.p>
       </div>
 
       {/* Feature Cards */}
@@ -109,23 +102,15 @@ export default function FeatureSection() {
         {features.map((feature, index) => (
           <motion.div
             key={index}
-            animate={controls}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
             className="relative p-8 bg-[#002C72] text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-500 ease-in-out"
             onMouseEnter={() => setActiveFeature(index)}
             onMouseLeave={() => setActiveFeature(null)}
-            style={{
-              borderRadius: '20px',
-              boxShadow: '0 0 20px rgba(0, 167, 225, 0.5)',
-            }}
+            whileHover={{ scale: 1.05 }}
           >
             <div className="flex items-center space-x-4">
               <motion.div
-                className="h-16 w-16 flex items-center justify-center bg-[#00A7E1] text-white rounded-full"
-                whileHover={{ scale: 1.2, rotate: 360 }}
-                transition={{ duration: 0.5 }}
+                className="h-8 w-8 text-white animate-spin"
+                whileHover={{ rotate: 360 }}
               >
                 <feature.icon className="h-8 w-8" />
               </motion.div>

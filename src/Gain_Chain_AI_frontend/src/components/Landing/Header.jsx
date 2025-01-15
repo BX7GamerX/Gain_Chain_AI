@@ -21,9 +21,9 @@ const Header = () => {
   return (
     <div>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
           sticky
-            ? 'bg-gradient-to-r from-[#001A3D]/80 to-[#003366]/80 backdrop-blur-md shadow-lg'
+            ? 'bg-gradient-to-r from-[#001A3D]/30 to-[#003366]/30 backdrop-blur-lg shadow-md border border-white/10 backdrop-saturate-150'
             : 'bg-transparent'
         }`}
       >

@@ -9,6 +9,7 @@ import securityImage from '../../images/security.webp'; // Import image from src
 import communityImage from '../../images/community.webp'; // Import image from src
 import communityJPEGImage from '../../images/community.jpeg'; // Import image from src
 import icpImage from '../../images/icp.jpeg'; // Import image from src
+import smartContractImage from '../../images/gain.png'; // Import your new image
 
 export default function IntegratedSection() {
   const controls = useAnimation()
@@ -109,6 +110,12 @@ export default function IntegratedSection() {
               image: icpImage,
               alt: "ICP Integration",
             },
+            {
+              title: "Smart Contract",
+              description: "Leverage smart contracts for automated and secure transactions on the blockchain.",
+              image: smartContractImage,
+              alt: "Smart Contract",
+            },
           ].map((feature, index) => (
             <motion.div 
               key={index}
@@ -119,11 +126,9 @@ export default function IntegratedSection() {
               exit="exit"
               transition={{ duration: 0.5, delay: index * 0.2 }}
             >
-              <div className="px-8 pt-8 sm:px-10 sm:pt-10 bg-[#002C72] text-white">
-                <h3 className="text-lg font-medium text-center">{feature.title}</h3>
-                <p className="mt-2 text-sm text-center">
-                  {feature.description}
-                </p>
+              <div className="absolute inset-0 bg-[#001F54]/95 backdrop-blur-sm p-6 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-lg font-extrabold text-center glow-text">{feature.title}</h3>
+                <p className="text-white/90 mb-4 text-sm text-center glow-text">{feature.description}</p>
               </div>
               <div className="h-56 w-full bg-cover bg-center">
                 <img

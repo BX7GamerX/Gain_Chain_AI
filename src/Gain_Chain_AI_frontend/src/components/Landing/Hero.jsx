@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { AiOutlineAppstoreAdd, AiFillRocket } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import heroImage from '../../images/home.jpg';
@@ -78,6 +78,23 @@ const Hero = () => {
           Join us in shaping a future where innovation knows no bounds. 
           Experience the seamless integration of AI and blockchain for a smarter tomorrow.
         </motion.p>
+
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+          <motion.button
+            onClick={() => window.open('https://gain-chain-ai.gitbook.io/gain-chain-ai', '_blank')}
+            className="text-white bg-[#00BFFF] px-10 py-4 rounded-full shadow-md hover:bg-[#003366] transition-all font-sans font-extrabold text-2xl tracking-wide relative"
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 0 25px 5px rgba(0, 191, 255, 0.6)",
+              transition: { duration: 0.2 }
+            }}
+          >
+            <AiFillRocket className="inline-block mr-2" />
+            <span className="relative z-10">Explore</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#00BFFF] to-[#003366] rounded-full opacity-80 blur-sm" />
+            <div className="absolute w-full h-full rounded-full animate-spark" />
+          </motion.button>
+        </div>
       </div>
     </motion.div>
   );
