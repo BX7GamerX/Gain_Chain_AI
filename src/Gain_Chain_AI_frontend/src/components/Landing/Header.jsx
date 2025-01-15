@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { IoHome } from 'react-icons/io5';
 import logo from '../../images/GAIN CHAIN AI.png';
 import logo2 from '../../images/neuro.png';
+import gchLogo from '../../images/gchcoinfinale.png'; // Import the GCH Coin logo
 
 const Header = () => {
   const [sticky, setSticky] = useState(false);
@@ -73,6 +74,17 @@ const Header = () => {
             >
               <span className="relative z-10">Get Started</span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#00BFFF] to-[#003366] rounded-full opacity-80 blur-sm" />
+            </motion.button>
+
+            {/* GCH Coin Logo Link */}
+            <motion.button
+              onClick={() => navigate('/gch-coin-integration')}
+              className="text-white p-2 hover:text-[#00BFFF] transition-all"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
+              <img src={gchLogo} alt="GCH Coin" className="w-12 h-12 cursor-pointer" />
             </motion.button>
           </nav>
         </div>

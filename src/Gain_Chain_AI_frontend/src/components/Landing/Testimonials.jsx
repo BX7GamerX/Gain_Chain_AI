@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { FaUserCircle, FaPlus } from "react-icons/fa"; // Import the profile icon and plus icon
+import { FaUserCircle, FaPlus, FaTimes } from "react-icons/fa"; // Import the profile icon, plus icon, and times icon
 import { toast, ToastContainer } from "react-toastify"; // Import Toastify
 import "react-toastify/dist/ReactToastify.css"; // Import default styles for Toastify
-import { motion } from "framer-motion"; // Add this import if not already present
+import { motion, AnimatePresence } from "framer-motion"; // Add AnimatePresence for animations
 
 export default function TestimonialCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [newTestimonial, setNewTestimonial] = useState({ quote: "", name: "", role: "" });
   const [isFormVisible, setIsFormVisible] = useState(false);
-
-  const testimonials = [
+  const [testimonials, setTestimonials] = useState([
     {
       quote: "Gain Chain's AI is absolutely incredible. If you like Copilot (or if you don't), you'll be blown away by this.",
       name: "Alex Chen",
@@ -30,7 +29,7 @@ export default function TestimonialCarousel() {
       name: "Emma Thompson",
       role: "Full Stack Developer",
     },
-  ];
+  ]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,7 +46,7 @@ export default function TestimonialCarousel() {
 
   const handleAddTestimonial = () => {
     if (newTestimonial.quote && newTestimonial.name && newTestimonial.role) {
-      testimonials.push(newTestimonial);
+      setTestimonials((prevTestimonials) => [...prevTestimonials, newTestimonial]);
       setNewTestimonial({ quote: "", name: "", role: "" });
       setIsFormVisible(false); // Hide the form after submission
       toast.success("Testimonial added successfully!", {
@@ -63,36 +62,6 @@ export default function TestimonialCarousel() {
       });
     }
   };
-
-  const scrollingStyles = `
-    .scrolling-container {
-      height: 400px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .scrolling-content {
-      animation: scroll 30s linear infinite;
-    }
-
-    .scrolling-content:hover {
-      animation-play-state: paused;
-    }
-
-    @keyframes scroll {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-50%); }
-    }
-
-    .testimonial-card {
-      transition: all 0.3s ease;
-    }
-
-    .testimonial-card:hover {
-      background-color: #0088cc !important;
-      transform: scale(1.02);
-    }
-  `;
 
   return (
     <section className="relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:px-12" style={{ backgroundColor: "#001F54" }}>
@@ -142,9 +111,13 @@ export default function TestimonialCarousel() {
         <div className="testimonials-scroll-container">
           <div className="testimonials-scroll-content">
             {[...testimonials, ...testimonials].map((testimonial, index) => (
-              <div 
+              <motion.div 
                 key={index} 
-                className="testimonial-item"
+                className={`testimonial-item ${index === testimonials.length - 1 ? 'new-testimonial' : ''}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                style={index === testimonials.length - 1 ? { boxShadow: '0 0 20px 5px rgba(255, 255, 255, 0.8)' } : {}}
               >
                 <div className="flex items-start gap-4 p-4">
                   <div className="flex-shrink-0">
@@ -159,64 +132,79 @@ export default function TestimonialCarousel() {
                     <p className="text-white mt-2">{testimonial.quote}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Updated Add Testimonial button with icon and glow effect */}
         <div className="mt-12 flex justify-center">
-          <button
-            onClick={() => setIsFormVisible((prev) => !prev)}
-            className="px-6 py-3 bg-blue-500 text-white font-semibold rounded shadow-lg 
-                     hover:bg-blue-600 transition duration-200 flex items-center gap-2
-                     animate-glow relative overflow-hidden group"
-          >
-            <FaPlus className="w-4 h-4" />
-            {isFormVisible ? "Hide Form" : "Add Testimonial"}
-            <div className="absolute inset-0 glow-ring"></div>
-          </button>
+          {!isFormVisible && (
+            <button
+              onClick={() => setIsFormVisible(true)}
+              className="px-6 py-3 bg-blue-500 text-white font-semibold rounded shadow-lg 
+                       hover:bg-blue-600 transition duration-200 flex items-center gap-2
+                       animate-glow relative overflow-hidden group"
+            >
+              <FaPlus className="w-4 h-4" />
+              <div className="absolute inset-0 glow-ring"></div>
+            </button>
+          )}
         </div>
       </div>
 
       {/* Display the form only when isFormVisible is true */}
-      {isFormVisible && (
-        <div className="mt-10 mx-auto w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-2xl font-bold text-center mb-4">Add Your Testimonial</h3>
-          <div>
-            <input
-              type="text"
-              name="quote"
-              placeholder="Your testimonial"
-              value={newTestimonial.quote}
-              onChange={handleInputChange}
-              className="w-full p-2 mb-2 border border-blue-500 rounded focus:outline-none focus:ring focus:ring-blue-300"
-            />
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={newTestimonial.name}
-              onChange={handleInputChange}
-              className="w-full p-2 mb-2 border border-blue-500 rounded focus:outline-none focus:ring focus:ring-blue-300"
-            />
-            <input
-              type="text"
-              name="role"
-              placeholder="Your Role"
-              value={newTestimonial.role}
-              onChange={handleInputChange}
-              className="w-full p-2 mb-4 border border-blue-500 rounded focus:outline-none focus:ring focus:ring-blue-300"
-            />
-            <button
-              onClick={handleAddTestimonial}
-              className="w-full bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600 transition duration-200"
+      <AnimatePresence>
+        {isFormVisible && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          >
+            <div
+              className="bg-light-blue p-6 rounded-lg shadow-lg w-full max-w-md relative"
             >
-              Submit
-            </button>
+              <button
+                onClick={() => setIsFormVisible(false)}
+                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              >
+                <FaTimes />
+              </button>
+              <h3 className="text-2xl font-bold text-center mb-4">Add Your Testimonial</h3>
+              <div>
+                <input
+                  type="text"
+                  name="quote"
+                  placeholder="Your testimonial"
+                  value={newTestimonial.quote}
+                  onChange={handleInputChange}
+                  className="w-full p-2 mb-2 border border-blue-500 rounded focus:outline-none focus:ring focus:ring-blue-300 transition-transform duration-300 hover:scale-105 focus:animate-pulse"
+                />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  value={newTestimonial.name}
+                  onChange={handleInputChange}
+                  className="w-full p-2 mb-2 border border-blue-500 rounded focus:outline-none focus:ring focus:ring-blue-300 transition-transform duration-300 hover:scale-105 focus:animate-pulse"
+                />
+                <input
+                  type="text"
+                  name="role"
+                  placeholder="Your Role"
+                  value={newTestimonial.role}
+                  onChange={handleInputChange}
+                  className="w-full p-2 mb-4 border border-blue-500 rounded focus:outline-none focus:ring focus:ring-blue-300 transition-transform duration-300 hover:scale-105 focus:animate-pulse"
+                />
+                <button
+                  onClick={handleAddTestimonial}
+                  className="w-full bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600 transition duration-200"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
 
       {/* Toast notifications container */}
       <ToastContainer
@@ -368,6 +356,36 @@ export default function TestimonialCarousel() {
           @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
+          }
+
+          .bg-light-blue {
+            background-color: #e0f7fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .bg-light-blue::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.5), transparent);
+            animation: rotate-glow 3s linear infinite;
+            opacity: 0.5;
+          }
+
+          .new-testimonial {
+            animation: glow 3s ease-in-out;
+          }
+
+          @keyframes glow {
+            0%, 100% { background-color: rgba(255, 255, 255, 0); }
+            50% { background-color: rgba(255, 255, 255, 0.5); }
           }
         `}
       </style>

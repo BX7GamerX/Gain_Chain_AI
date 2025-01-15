@@ -1,109 +1,59 @@
 import React from 'react';
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBBtn,
-} from 'mdb-react-ui-kit';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faTwitter, faGoogle, faInstagram, faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons';
-import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome styles
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Twitter, Instagram, LinkedinIcon as LinkedIn, GitlabIcon as GitHub } from 'lucide-react';
+import logo from '../../images/neuro.png'; // Adjust the path as necessary
 
 // Import the logo image
 import logoImage from './images/neuro.png'; // Adjust path to the actual location
 
 export default function Footer() {
   return (
-    <MDBFooter className="bg-[#002C72] text-white text-center py-4">
-      <MDBContainer className="d-flex justify-content-between align-items-center">
-        {/* Logo Section */}
-        <div className="d-flex align-items-center">
-          {/* Use imported logo image */}
-          <img src={logoImage} alt="Gain Chain Logo" style={{ height: '50px', marginRight: '15px' }} />
-          <h5 className="mb-1" style={{ color: '#A9DFF1' }}>Gain Chain AI</h5>
-          <div className="text-centre">
-            <p style={{ color: '#A9DFF1', fontSize: '1rem' }}>Where AI and Blockchain Forge the Future</p>
-          </div>
+    <footer className="bg-[#003366] text-white py-8">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center mb-6 md:mb-0"
+          >
+            <img src={logo} alt="Gain Chain Logo" className="h-10 mr-2" />
+            <Link to="/" className="text-2xl font-bold glow">
+              <span className="text-neon-blue">Gain</span>
+              <span className="text-neon-blue">Chain</span>
+              <span className="text-neon-blue"> AI</span>
+            </Link>
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex space-x-6"
+          >
+            {[
+              { icon: Twitter, href: 'https://twitter.com' },
+              { icon: Instagram, href: 'https://instagram.com' },
+              { icon: LinkedIn, href: 'https://linkedin.com' },
+              { icon: GitHub, href: 'https://github.com' },
+            ].map((social, index) => (
+              <motion.a 
+                key={index} 
+                href={social.href} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="transform transition-transform duration-300 hover:scale-110 text-neon-blue"
+              >
+                <social.icon className="h-6 w-6" />
+              </motion.a>
+            ))}
+          </motion.div>
         </div>
-
-        {/* Social Media Icons */}
-        <section className="mb-4">
-          <MDBBtn
-            floating
-            className="m-1"
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            role="button"
-          >
-            <FontAwesomeIcon icon={faFacebookF} size="lg" />
-          </MDBBtn>
-
-          <MDBBtn
-            floating
-            className="m-1"
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            role="button"
-          >
-            <FontAwesomeIcon icon={faTwitter} size="lg" />
-          </MDBBtn>
-
-          <MDBBtn
-            floating
-            className="m-1"
-            href="https://www.google.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            role="button"
-          >
-            <FontAwesomeIcon icon={faGoogle} size="lg" />
-          </MDBBtn>
-
-          <MDBBtn
-            floating
-            className="m-1"
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            role="button"
-          >
-            <FontAwesomeIcon icon={faInstagram} size="lg" />
-          </MDBBtn>
-
-          <MDBBtn
-            floating
-            className="m-1"
-            href="https://www.linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            role="button"
-          >
-            <FontAwesomeIcon icon={faLinkedinIn} size="lg" />
-          </MDBBtn>
-
-          <MDBBtn
-            floating
-            className="m-1"
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            role="button"
-          >
-            <FontAwesomeIcon icon={faGithub} size="lg" />
-          </MDBBtn>
-        </section>
-      </MDBContainer>
-
-      {/* Email Display */}
-      <p className="mb-4" style={{ fontSize: '1rem', color: '#B0B0B0' }}>
-        Email: <a href="mailto:gainchainai@gmail.com" style={{ color: '#40E0D0' }}>gainchainai@gmail.com</a>
-      </p>
-
-      {/* Footer Bottom */}
-      <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-        © 2024 Gain Chain. All rights reserved.
       </div>
-    </MDBFooter>
+      <div className="text-center text-white mt-4">
+        <p>Email: <a href="mailto:gainchainai@gmail.com" className="text-neon-blue">gainchainai@gmail.com</a></p>
+        <p className="mt-2">© 2024 Gain Chain AI. All rights reserved.</p>
+      </div>
+    </footer>
   );
 }
