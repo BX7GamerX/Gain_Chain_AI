@@ -8,12 +8,12 @@ import veronica from '../../images/verah.jpeg';
 const teamMembers = [
   {
     name: 'Simon Wandera',
-    role: 'Blockchain Developer & AI Engineer',
+    role: 'Backend & AI Developer',
     image: simon,
-    description: 'Full-stack blockchain developer specializing in AI integration and smart contract development.',
-    portfolio: 'https://simonwandera.com',
+    description: 'Full-stack blockchain developer specializing in AI integration and smart contract development using RUST.',
+    portfolio: 'https://bx7gamerx.github.io',
     linkedin: 'https://linkedin.com/in/simonwandera',
-    github: 'https://github.com/simonwandera'
+    github: 'https://github.com/BX7GamerX'
   },
   {
     name: 'Joanne Wendoh',
@@ -26,11 +26,11 @@ const teamMembers = [
   },
   {
     name: 'Veronicah Anzimbu',
-    role: 'Backend Developer & System Architect',
+    role: 'Data Scientist & AI Engineer',
     image: veronica,
-    description: 'Experienced backend developer focused on scalable architecture and system optimization.',
-    portfolio: 'https://veranzi.com',
-    linkedin: 'https://linkedin.com/in/veronicahanzimbu',
+    description: 'Experienced AI developer focused on scalable LLMs and model optimization.',
+    portfolio: 'https://veranzi-website.vercel.app/',
+    linkedin: 'https://www.linkedin.com/in/veronicah-anzimbu-aa15a8232?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
     github: 'https://github.com/veranzi'
   },
 ];
