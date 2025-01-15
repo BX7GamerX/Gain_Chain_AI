@@ -22,13 +22,13 @@ const teamMembers = [
     github: 'https://github.com/joannewendoh'
   },
   {
-    name: 'Verah Veranzi',
+    name: 'Veronicah Anzimbu',
     role: 'Backend Developer & System Architect',
     image: 'src/images/verah.jpg',
     description: 'Experienced backend developer focused on scalable architecture and system optimization.',
-    portfolio: 'https://verahveranzi.com',
-    linkedin: 'https://linkedin.com/in/verahveranzi',
-    github: 'https://github.com/verahveranzi'
+    portfolio: 'https://veranzi.com',
+    linkedin: 'https://linkedin.com/in/veronicahanzimbu',
+    github: 'https://github.com/veranzi'
   },
 ];
 
