@@ -1,1 +1,1 @@
-/home/wendoh/Development/proffesional\ projects/Gain_Chain_AI/target/wasm32-unknown-unknown/release/Gain_Chain_AI_backend.wasm: /home/wendoh/Development/proffesional\ projects/Gain_Chain_AI/src/Gain_Chain_AI_backend/src/lib.rs
+/home/not_him/projects/rust/Gain_Chain_AI/target/wasm32-unknown-unknown/release/Gain_Chain_AI_backend.wasm: /home/not_him/projects/rust/Gain_Chain_AI/src/Gain_Chain_AI_backend/src/lib.rs

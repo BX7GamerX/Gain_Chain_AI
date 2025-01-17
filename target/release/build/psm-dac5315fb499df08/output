@@ -1,5 +1,5 @@
 OPT_LEVEL = Some(0)
-OUT_DIR = Some(/home/wendoh/Development/proffesional projects/Gain_Chain_AI/target/release/build/psm-dac5315fb499df08/out)
+OUT_DIR = Some(/home/not_him/projects/rust/Gain_Chain_AI/target/release/build/psm-dac5315fb499df08/out)
 TARGET = Some(x86_64-unknown-linux-gnu)
 HOST = Some(x86_64-unknown-linux-gnu)
 cargo:rerun-if-env-changed=CC_x86_64-unknown-linux-gnu
@@ -46,4 +46,4 @@ HOST_ARFLAGS = None
 cargo:rerun-if-env-changed=ARFLAGS
 ARFLAGS = None
 cargo:rustc-link-lib=static=psm_s
-cargo:rustc-link-search=native=/home/wendoh/Development/proffesional projects/Gain_Chain_AI/target/release/build/psm-dac5315fb499df08/out
+cargo:rustc-link-search=native=/home/not_him/projects/rust/Gain_Chain_AI/target/release/build/psm-dac5315fb499df08/out
